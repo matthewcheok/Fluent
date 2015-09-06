@@ -14,15 +14,6 @@ class ViewController: UIViewController {
     var expanded = false
     
     func handleTap(tap: UITapGestureRecognizer) {
-//        if expanded {
-//            box.animate(1).scaleBy(0.5).rotateBy(-0.5).translateBy(-50, -50).backgroundColor(.redColor())
-//            expanded = false
-//        }
-//        else {
-//            box.animate(1).translateBy(50, 50).rotateBy(0.5).scaleBy(2).backgroundColor(.blueColor()).alpha(0.7)
-//            expanded = true
-//        }
-
         boxView
             .animate(0.5)
             .rotate(0.5)
