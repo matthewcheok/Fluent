@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Fluent {
+public class Fluent {
     typealias AnimationBlock = () -> Void
 
     private var animations: [AnimationBlock] = []
@@ -43,7 +43,7 @@ class Fluent {
     }
 }
 
-class ViewFluent: Fluent {
+public class ViewFluent: Fluent {
     private let view: UIView
     
     enum AffineTransformType {
@@ -60,42 +60,42 @@ class ViewFluent: Fluent {
         super.init(duration: duration, velocity: velocity, damping: damping, options: options)
     }
     
-    func scale(factor: CGFloat) -> Self {
+    public func scale(factor: CGFloat) -> Self {
         precondition(transformType != .Relative, transformError)
         transformType = .Absolute
         transformMatrix = CGAffineTransformScale(transformMatrix, factor, factor)
         return self
     }
     
-    func translate(x: CGFloat, _ y: CGFloat) -> Self {
+    public func translate(x: CGFloat, _ y: CGFloat) -> Self {
         precondition(transformType != .Relative, transformError)
         transformType = .Absolute
         transformMatrix = CGAffineTransformTranslate(transformMatrix, x, y)
         return self
     }
     
-    func rotate(cycles: CGFloat) -> Self {
+    public func rotate(cycles: CGFloat) -> Self {
         precondition(transformType != .Relative, transformError)
         transformType = .Absolute
         transformMatrix = CGAffineTransformRotate(transformMatrix, cycles * 2 * CGFloat(M_PI_2))
         return self
     }
     
-    func scaleBy(factor: CGFloat) -> Self {
+    public func scaleBy(factor: CGFloat) -> Self {
         precondition(transformType != .Absolute, transformError)
         transformType = .Relative
         transformMatrix = CGAffineTransformScale(transformMatrix, factor, factor)
         return self
     }
     
-    func translateBy(x: CGFloat, _ y: CGFloat) -> Self {
+    public func translateBy(x: CGFloat, _ y: CGFloat) -> Self {
         precondition(transformType != .Absolute, transformError)
         transformType = .Relative
         transformMatrix = CGAffineTransformTranslate(transformMatrix, x, y)
         return self
     }
     
-    func rotateBy(cycles: CGFloat) -> Self {
+    public func rotateBy(cycles: CGFloat) -> Self {
         precondition(transformType != .Absolute, transformError)
         transformType = .Relative
         transformMatrix = CGAffineTransformRotate(transformMatrix, cycles * 2 * CGFloat(M_PI_2))
@@ -111,7 +111,7 @@ class ViewFluent: Fluent {
         }
     }
     
-    func backgroundColor(color: UIColor) -> Self {
+    public func backgroundColor(color: UIColor) -> Self {
         animations.append({
             [view] in
             view.backgroundColor = color
@@ -119,7 +119,7 @@ class ViewFluent: Fluent {
         return self
     }
     
-    func alpha(alpha: CGFloat) -> Self {
+    public func alpha(alpha: CGFloat) -> Self {
         animations.append({
             [view] in
             view.alpha = alpha
@@ -127,7 +127,7 @@ class ViewFluent: Fluent {
         return self
     }
     
-    func frame(frame: CGRect) -> Self {
+    public func frame(frame: CGRect) -> Self {
         animations.append({
             [view] in
             view.frame = frame
@@ -135,7 +135,7 @@ class ViewFluent: Fluent {
         return self
     }
     
-    func bounds(bounds: CGRect) -> Self {
+    public func bounds(bounds: CGRect) -> Self {
         animations.append({
             [view] in
             view.bounds = bounds
@@ -143,7 +143,7 @@ class ViewFluent: Fluent {
         return self
     }
     
-    func center(center: CGPoint) -> Self {
+    public func center(center: CGPoint) -> Self {
         animations.append({
             [view] in
             view.center = center
@@ -151,15 +151,16 @@ class ViewFluent: Fluent {
         return self
     }
     
-    func waitThenAnimate(duration: NSTimeInterval, velocity: CGFloat = 0, damping: CGFloat = 1, options: UIViewAnimationOptions = [.AllowUserInteraction, .BeginFromCurrentState]) -> ViewFluent {
+    public func waitThenAnimate(duration: NSTimeInterval, velocity: CGFloat = 0, damping: CGFloat = 1, options: UIViewAnimationOptions = [.AllowUserInteraction, .BeginFromCurrentState]) -> ViewFluent {
+        precondition(next == nil, "You have already specified a completion handler")
         let after = ViewFluent(view: view, duration: duration, velocity: velocity, damping: damping, options: options)
         next = after
         return after
     }
 }
 
-extension UIView {
-    func animate(duration: NSTimeInterval, velocity: CGFloat = 0, damping: CGFloat = 1, options: UIViewAnimationOptions = [.AllowUserInteraction, .BeginFromCurrentState]) -> ViewFluent {
+public extension UIView {
+    public func animate(duration: NSTimeInterval, velocity: CGFloat = 0, damping: CGFloat = 1, options: UIViewAnimationOptions = [.AllowUserInteraction, .BeginFromCurrentState]) -> ViewFluent {
         return ViewFluent(view: self, duration: duration, velocity: velocity, damping: damping, options: options)
     }
 }

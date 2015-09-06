@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Fluent
 
 class ViewController: UIViewController {
-    let box = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    let boxView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
     var expanded = false
     
     func handleTap(tap: UITapGestureRecognizer) {
@@ -22,12 +23,12 @@ class ViewController: UIViewController {
 //            expanded = true
 //        }
 
-        box
-            .animate(1)
+        boxView
+            .animate(0.5)
             .rotate(0.5)
             .scale(2)
             .backgroundColor(.blueColor())
-            .waitThenAnimate(1)
+            .waitThenAnimate(0.5)
             .scale(1)
             .backgroundColor(.redColor())
     }
@@ -36,9 +37,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        box.backgroundColor = .redColor()
-        box.center = CGPoint(x: view.bounds.width/2, y: view.bounds.height/2)
-        view.addSubview(box)
+        boxView.backgroundColor = .redColor()
+        boxView.center = CGPoint(x: view.bounds.width/2, y: view.bounds.height/2)
+        view.addSubview(boxView)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
     }
 

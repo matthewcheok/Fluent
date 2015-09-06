@@ -1,0 +1,14 @@
+PODS:
+  - Fluent (0.1)
+
+DEPENDENCIES:
+  - Fluent (from `../`)
+
+EXTERNAL SOURCES:
+  Fluent:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Fluent: eafa114f9ec7a506d3b1c51e0f97f710b23d48ff
+
+COCOAPODS: 0.38.2
