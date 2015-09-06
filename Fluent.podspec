@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'Fluent'
-  s.version  = '0.1'
+  s.version  = '0.1.1'
   s.ios.deployment_target   = '8.0'
   s.license  = { :type => 'MIT', :file => 'LICENSE' }
   s.summary  = 'Swift Animations made Easy'

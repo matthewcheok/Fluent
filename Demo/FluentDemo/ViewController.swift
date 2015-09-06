@@ -15,13 +15,13 @@ class ViewController: UIViewController {
     
     func handleTap(tap: UITapGestureRecognizer) {
         boxView
-            .animate(0.5)
-            .rotate(0.5)
-            .scale(2)
-            .backgroundColor(.blueColor())
-            .waitThenAnimate(0.5)
-            .scale(1)
-            .backgroundColor(.redColor())
+        .animate(0.5)
+        .rotate(0.5)
+        .scale(2)
+        .backgroundColor(.blueColor())
+        .waitThenAnimate(0.5)
+        .scale(1)
+        .backgroundColor(.redColor())
     }
 
     override func viewDidLoad() {

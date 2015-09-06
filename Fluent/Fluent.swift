@@ -9,7 +9,7 @@
 import UIKit
 
 public class Fluent {
-    typealias AnimationBlock = () -> Void
+    public typealias AnimationBlock = () -> Void
 
     private var animations: [AnimationBlock] = []
     private let duration: NSTimeInterval
@@ -148,6 +148,11 @@ public class ViewFluent: Fluent {
             [view] in
             view.center = center
             })
+        return self
+    }
+    
+    public func custom(animation: AnimationBlock) -> Self {
+        animations.append(animation)
         return self
     }
     
